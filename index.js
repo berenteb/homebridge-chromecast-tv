@@ -49,10 +49,18 @@ class ChromecastTV {
     const tvService = this.tvAccessory.addService(this.Service.Television);
 
     // information service
-    tvService
-      .setCharacteristic(this.Characteristic.Manufacturer, "BB")
-      .setCharacteristic(this.Characteristic.Model, "Chromecast TV")
-      .setCharacteristic(this.Characteristic.SerialNumber, "Version 1.0");
+    this.tvAccesory.removeService(this.tvAccesory.getService(this.Service.AccessoryInformation));
+
+    // add my own information service
+    let informationService = new this.Service.AccessoryInformation();
+    informationService
+      .setCharacteristic(this.Characteristic.Name, "Chromecast TV")
+      .setCharacteristic(this.Characteristic.Manufacturer, 'Google')
+      .setCharacteristic(Characteristic.Model, "Chromecast")
+      .setCharacteristic(Characteristic.SerialNumber, "V1")
+      .setCharacteristic(Characteristic.FirmwareRevision, "V1");
+
+    this.tvAccesory.addService(informationService);
     
     // set sleep discovery characteristic
     tvService.setCharacteristic(this.Characteristic.SleepDiscoveryMode, this.Characteristic.SleepDiscoveryMode.ALWAYS_DISCOVERABLE);
