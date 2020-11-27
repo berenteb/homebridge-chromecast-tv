@@ -50,9 +50,9 @@ class ChromecastTV {
 
     // information service
     tvService
-      .setCharacteristic(Characteristic.Manufacturer, "BB")
-      .setCharacteristic(Characteristic.Model, "Chromecast TV")
-      .setCharacteristic(Characteristic.SerialNumber, "Version 1.0");
+      .setCharacteristic(this.Characteristic.Manufacturer, "BB")
+      .setCharacteristic(this.Characteristic.Model, "Chromecast TV")
+      .setCharacteristic(this.Characteristic.SerialNumber, "Version 1.0");
     
     // set sleep discovery characteristic
     tvService.setCharacteristic(this.Characteristic.SleepDiscoveryMode, this.Characteristic.SleepDiscoveryMode.ALWAYS_DISCOVERABLE);
