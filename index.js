@@ -64,7 +64,6 @@ class ChromecastTV {
     
     // set sleep discovery characteristic
     tvService.setCharacteristic(this.Characteristic.SleepDiscoveryMode, this.Characteristic.SleepDiscoveryMode.ALWAYS_DISCOVERABLE);
-    tvService.setCharacteristic(this.Characteristic.name)
     // handle on / off events using the Active characteristic
     tvService.getCharacteristic(this.Characteristic.Active)
       .on('set', (newValue, callback) => {
