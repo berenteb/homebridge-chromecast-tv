@@ -49,8 +49,7 @@ class ChromecastTV {
     const tvService = this.tvAccessory.addService(this.Service.Television);
 
     // information service
-    var informationService = this.tvAccessory.addService(this.Service.AccessoryInformation);
-    informationService
+    tvService
       .setCharacteristic(Characteristic.Manufacturer, "BB")
       .setCharacteristic(Characteristic.Model, "Chromecast TV")
       .setCharacteristic(Characteristic.SerialNumber, "Version 1.0");
