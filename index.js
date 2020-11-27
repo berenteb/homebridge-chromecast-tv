@@ -48,9 +48,6 @@ class ChromecastTV {
     // add the tv service
     const tvService = this.tvAccessory.addService(this.Service.Television);
 
-    // information service
-    this.tvAccessory.removeService(this.tvAccessory.getService(this.Service.AccessoryInformation));
-
     // add my own information service
     let informationService = new this.Service.AccessoryInformation();
     informationService
