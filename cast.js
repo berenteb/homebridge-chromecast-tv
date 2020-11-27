@@ -20,14 +20,14 @@ var browser = mdns.createBrowser(mdns.tcp('googlecast'), { resolverSequence: seq
 
 browser.on('serviceUp', function (service) {
     if (service.name.includes("Chromecast") && !connected) {
-        console.log('Found Chromecast at %s:%d', service.addresses[0], service.port || 8009);
+        console.log('Found Chromecast at %s:%d', service.addresses[0], service.port || 8009);
         ip = service.addresses[0];
         ondeviceup(ip);
     }
 });
 browser.on("serviceDown", function (service) {
     if (service.name.includes("Chromecast")) {
-        if(log)console.log("Chromecast down");
+        if (log) console.log("Chromecast down");
         connected = false;
     }
 });
@@ -35,11 +35,11 @@ browser.on("serviceDown", function (service) {
 function ondeviceup(host) {
     client = new Client();
     client.on("error", () => {
-        if(log)console.log("Disconnected");
+        if (log) console.log("Disconnected");
         connected = false;
     })
     client.on("close", () => {
-        if(log)console.log("Disconnected");
+        if (log) console.log("Disconnected");
         connected = false;
     });
     client.connect(host, function () {
@@ -58,7 +58,7 @@ function ondeviceup(host) {
                 heartbeat.send({ type: 'PING' });
             } catch (err) {
                 clearInterval(hb_interval);
-                if(log)console.log("Stopped heartbeat");
+                if (log) console.log("Stopped heartbeat");
             }
         }, 5000);
 
@@ -78,7 +78,7 @@ var closeAll = () => {
         try {
             client.close();
         } catch (err) {
-            if(log)console.log("Client already closed");
+            if (log) console.log("Client already closed");
         }
     }
     connected = false;
@@ -86,21 +86,25 @@ var closeAll = () => {
 
 var connect = () => {
     closeAll();
-    if(log)console.log("Starting device browser");
+    if (log) console.log("Starting device browser");
     try {
         browser.start();
     } catch (err) {
-        if(log)console.log("Could not start browser");
+        if (log) console.log("Could not start browser");
     }
-    ondeviceup(ip);
+    try{
+        ondeviceup(ip);
+    }catch(err){
+        console.log("Could not connect to Chromecast");
+    }
 }
 
 var disconnect = () => {
-    if(log)console.log("Stopping device browser");
+    if (log) console.log("Stopping device browser");
     try {
         browser.stop();
     } catch (err) {
-        if(log)console.log("Could not stop browser");
+        if (log) console.log("Could not stop browser");
     }
 }
 
@@ -122,7 +126,7 @@ var setVolume = (dir) => {
         try {
             receiver.send({ "type": "SET_VOLUME", "volume": { level: parseFloat(volume) }, requestId: 1 });
         } catch (err) {
-            if(log)console.log("Could not set volume");
+            if (log) console.log("Could not set volume");
         }
     }
 }
@@ -133,7 +137,7 @@ var toggleMute = () => {
         try {
             receiver.send({ "type": "SET_VOLUME", "volume": { muted: muted }, requestId: 1 });
         } catch (err) {
-            if(log)console.log("Could not mute");
+            if (log) console.log("Could not mute");
         }
     }
 }
@@ -143,7 +147,7 @@ var stop = () => {
         try {
             receiver.send({ "type": "STOP", requestId: 1 });
         } catch (err) {
-            if(log)console.log("Could not stop");
+            if (log) console.log("Could not stop");
         }
 }
 
@@ -156,12 +160,12 @@ var playPause = () => {
             else
                 receiver.send({ "type": "PAUSE", requestId: 1 });
         } catch (err) {
-            if(log)console.log("Could not play/pause")
+            if (log) console.log("Could not play/pause")
         }
     }
 }
 
-var setDebug = (state)=>{
+var setDebug = (state) => {
     log = state;
 }
 

@@ -48,16 +48,22 @@ class ChromecastTV {
     // add the tv service
     const tvService = this.tvAccessory.addService(this.Service.Television);
 
+    // information service
+    var informationService = new Service.AccessoryInformation();
+    informationService
+      .setCharacteristic(Characteristic.Manufacturer, "BB")
+      .setCharacteristic(Characteristic.Model, "Chromecast TV")
+      .setCharacteristic(Characteristic.SerialNumber, "Version 1.0");
     // set sleep discovery characteristic
     tvService.setCharacteristic(this.Characteristic.SleepDiscoveryMode, this.Characteristic.SleepDiscoveryMode.ALWAYS_DISCOVERABLE);
-
+    tvService.setCharacteristic(this.Characteristic.name)
     // handle on / off events using the Active characteristic
     tvService.getCharacteristic(this.Characteristic.Active)
       .on('set', (newValue, callback) => {
         this.log.info('Active => ' + newValue);
         if (newValue === 1) {
           tplink.setState(true);
-          cast.connect();
+          //cast.connect();
         } else if (newValue === 0) {
           tplink.setState(false);
           cast.disconnect();
