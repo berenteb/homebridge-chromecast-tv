@@ -10,7 +10,7 @@ Control your Chromecast and TP-Link Smart Plug equipped TV!
 ## Current issues:
 - Play/pause button is coded but not working, Chromecast does nothing receiving these messages.
 - When the plug with the configured MAC address is not found, the plugin will crash and so will Homebridge.
-- For some reasons Homebridge logs an error saying 'Cannot read port of undefined' when connecting to the Chromecast.
+- ~For some reasons Homebridge logs an error saying 'Cannot read port of undefined' when connecting to the Chromecast.~ (Error has been handled.)
 - If you have more than one Chromecast devices (Google Home devices doesn't count) you'll have problems...
 
 ## Some good features
