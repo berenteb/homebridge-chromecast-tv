@@ -34,7 +34,7 @@ The plugin works really reliably if configured properly and the required devices
 Without them, this project would have a hard time.
 
 # ISC License (ISC)
-Copyright 2020 Bálint Berente
+Copyright 2021 Bálint Berente
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
