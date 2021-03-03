@@ -1,3 +1,4 @@
+![Version: see package.json](https://img.shields.io/github/package-json/v/berenteb/homebridge-chromecast-tv)
 # Homebridge TV Plugin with Chromecast and TP-Link Smart Plug support
 Control your Chromecast and TP-Link Smart Plug equipped TV!
 ## Currently supported features:
